@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Новогодний подарок для Tedwin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1f2d 0%, #1a3b5d 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-top: 8px solid #e84141;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 30px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #ffd166;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+        
+        .friend-name {
+            color: #e84141;
+            font-weight: bold;
+            font-size: 2rem;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(232, 65, 65, 0.5);
+        }
+        
+        .counter {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            color: #4cc9f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader"></div>
+    
+    <h1>🎁 Готовим новогодний сюрприз</h1>
+    
+    <div class="message">
+        Для нашего особого гостя:
+    </div>
+    
+    <div class="friend-name" id="friendName">Tedwin</div>
+    
+    <div class="message">
+        Загружаем волшебство, гирлянды и подарки...
+    </div>
+    
+    <div class="counter" id="counter">5</div>
+
+    <script>
+        // Анимированный счётчик
+        let count = 5; 
+        const counterElement = document.getElementById('counter');
+        const friendNameElement = document.getElementById('friendName');
+        
+        // Можно добавить анимацию имени
+        friendNameElement.style.opacity = '0';
+        friendNameElement.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            friendNameElement.style.transition = 'all 0.8s ease';
+            friendNameElement.style.opacity = '1';
+            friendNameElement.style.transform = 'translateY(0)';
+        }, 300);
+        
+        // Обратный отсчёт
+        const countdown = setInterval(() => {
+            count--;
+            counterElement.textContent = count;
+            
+            if (count <= 0) {
+                clearInterval(countdown);
+                counterElement.textContent = 'Поехали! 🚀';
+                setTimeout(() => {
+                    window.location.href = 'start.html?name=Tedwin';
+                }, 500);
+            }
+        }, 1000);
+            </script>
+</body>
+</html>

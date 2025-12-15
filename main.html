@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Тайный Санта: Новогодний Квест!</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Локальные шрифты в качестве fallback */
+        @font-face {
+            font-family: 'ChristmasFont';
+            src: local('Comic Sans MS'), local('Arial Rounded MT Bold'), sans-serif;
+        }
+        
+        @font-face {
+            font-family: 'HandwritingFont';
+            src: local('Brush Script MT'), local('Lucida Handwriting'), cursive;
+        }
+        
+        @font-face {
+            font-family: 'GameFont';
+            src: local('Segoe UI'), local('Arial'), sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновый слой с новогодней картинкой -->
+    <div class="background-layer"></div>
+
+    <!-- Параллакс слои -->
+    <div class="parallax-layer layer-1"></div>
+    <div class="parallax-layer layer-2"></div>
+
+    <!-- Анимированный снег -->
+    <div class="snow-container"></div>
+
+    <!-- Основной контейнер -->
+    <div class="container">
+        <!-- Лента с контентом -->
+        <div class="scroll-content">
+            
+            <!-- Заставка -->
+            <section class="screen screen-intro" id="screen1">
+                <h1>🎁 Тайное письмо от Санты 🎁</h1>
+                <div class="envelope">
+                    <div class="flap"></div>
+                    <div class="letter">
+                        
+                        <p class="greeting">Для: <span class="friend-name">[Имя Друга]</span></p>
+                    </div>
+                </div>
+                <div class="instruction"></div>
+                    <button class="btn-music" id="musicToggle">
+                        <span>🎵 Включить атмосферу</span>
+                    </button>
+
+                <div class="volume-slider-container hidden" id="volumeSliderContainer">
+                    <div class="volume-slider-wrapper">
+                        <span class="volume-icon">🔊</span>
+                        <input type="range" 
+                            id="volumeSlider" 
+                            min="0" 
+                            max="100" 
+                            value="30"
+                            class="volume-slider">
+                        <span class="volume-percent" id="volumePercent">30%</span>
+                    </div>
+                </div>
+                    <h1>Прокручивай вниз, чтобы открыть подарок...</h1>
+                    <div class="arrow-bounce">
+                        <span>▼</span>
+                        <span>▼</span>
+                        <span>▼</span>
+                    </div>  
+                </div>
+            </section>
+
+            <!-- Часть 1: Знакомство с персонажем -->
+            <section class="screen screen-character" id="screen2">
+                <h2>🎮 Подготовься к праздкику! Прокачайся по полной!</h2>
+                <div class="character-showcase">
+                    <div class="character-card" id="charMain">
+                        <img src="character_main.png" alt="Главный персонаж" class="character-img">
+                        <div class="character-info">
+                            <h3>Имя Персонажа</h3>
+                            <div class="stats">
+                                <div class="stat">❤️ Уровень: <span id="charLevel">100</span></div>
+                                <div class="stat">⚡ Сила: <span id="charPower">9999</span></div>
+                                <div class="stat">💎 Редкость: <span class="rarity legendary">LEGENDARY</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="character-actions">
+                        <button class="btn-action" id="upgradeChar">
+                            ⬆️ Прокачать (+100 к силе)
+                        </button>
+                        <button class="btn-action" id="changeSkin">
+                            🎨 Сменить скин
+                        </button>
+                        <button class="btn-action" id="spinWeapon">
+                            🔄 Хоба, перекатик!
+                        </button>
+                    </div>
+                </div>
+                <p class="dialogue" id="charDialogue">"Заряжен и готов к бою!"</p>
+            </section>
+
+            <!-- Часть 2: Интерактивная комната -->
+            <section class="screen screen-room" id="screen3">
+                <h2>🏠 Новогодняя Комната</h2>
+                <div class="room">
+                    <!-- Камин -->
+                    <div class="room-item fireplace" id="fireplace">
+                        <div class="fire"></div>
+                        <div class="fire"></div>
+                        <div class="fire"></div>
+                        <button class="btn-room" data-action="fire">
+                            🔥 Зажечь камин
+                        </button>
+                        <div class="status">Камин горит: <span id="fireStatus">Нет</span></div>
+                    </div>
+                    
+                    <!-- Окно -->
+                    <div class="room-item window" id="window">
+                        <div class="snow-pile"></div>
+                        <button class="btn-room" data-action="snowball">
+                            ❄️ Кинуть снежок
+                        </button>
+                        <div class="status">Снежков брошено: <span id="snowballCount">0</span></div>
+                    </div>
+                    
+                    <!-- Стол с какао -->
+                    <div class="room-item table" id="table">
+                        <div class="mug">
+                            <div class="steam s1"></div>
+                            <div class="steam s2"></div>
+                            <div class="steam s3"></div>
+                        </div>
+                        <button class="btn-room" data-action="cocoa">
+                            ☕ Налить какао
+                        </button>
+                        <div class="status">Чашек налито: <span id="cocoaCount">0</span></div>
+                    </div>
+                    
+                    <!-- Ёлка -->
+                    <div class="room-item tree" id="tree">
+                        <div class="decorations">
+                            <div class="decoration d1"></div>
+                            <div class="decoration d2"></div>
+                            <div class="decoration d3"></div>
+                        </div>
+                        <button class="btn-room" data-action="decorate">
+                            🎄 Украсить ёлку
+                        </button>
+                        <div class="status">Украшений: <span id="decorCount">3</span>/50</div>
+                    </div>
+                </div>
+                <div class="room-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="roomProgress"></div>
+                    </div>
+                    <p>Уют комнаты: <span id="coziness">0%</span></p>
+                </div>
+            </section>
+
+            <!-- Часть 3: Мини-игра -->
+            <section class="screen screen-game" id="screen4">
+                <h2>🎮 Поймай Подарки!</h2>
+                <p>Управляй Сантой (стрелки влево/вправо), лови подарки, избегай углей!</p>
+                <div class="game-container">
+                    <div class="game-info">
+                        <div class="score">🎁 Подарков: <span id="giftsCaught">0</span></div>
+                        <div class="score">⏱ Время: <span id="gameTime">30</span>с</div>
+                        <div class="score">🔥 Промахов: <span id="missed">0</span>/3</div>
+                    </div>
+                    <canvas id="gameCanvas" width="800" height="400"></canvas>
+                    <div class="game-controls">
+                        <button class="btn-game" id="startGame">
+                            ▶️ Начать игру
+                        </button>
+                        <div class="instructions">
+                            <kbd>←</kbd> <kbd>→</kbd> для движения • Пробел для паузы
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Часть 4: Поздравление -->
+            <section class="screen screen-final" id="screen5">
+                <div class="gift-box">
+                    <div class="box-lid"></div>
+                    <div class="box-body"></div>
+                    <!-- Контейнер для гифки появится при открытии -->
+                    <button class="btn-open-gift" id="openGift">
+                        👇 Открыть подарок!
+                    </button>
+
+                    <div class="main-gift-sidebar" id="mainGiftSidebar">
+                    <button class="btn-main-gift" id="steamGiftBtn">
+                        🎮 <span>Основной подарок</span>
+                    </button>
+                </div>
+                </div>
+
+
+
+                <!-- Модальное окно Steam подарка -->
+                <div class="modal-overlay hidden" id="steamModal">
+                    <div class="modal-content">
+                        <button class="modal-close" id="closeModal">×</button>
+                        <h2>🎉 Твой главный подарок!</h2>
+                        <div class="gift-icon">🎮</div>
+                        <p class="gift-description">Случайная игра из Steam!</p>
+                        <p class="gift-instruction">Нажми на кнопку ниже, чтобы скопировать ключ. Активируй в Steam!</p>
+                        
+                        <div class="steam-key-container">
+                            <button class="btn-copy-key" id="copySteamKey">
+                                📋 Копировать ключ
+                            </button>
+                        </div>
+                        
+                        <div class="steam-instructions">
+                            <h3>📝 Как активировать:</h3>
+                            <ol>
+                                <li>Открой <strong>Steam</strong></li>
+                                <li>Слева снизу <strong>"Добавить игру" → "Активировать через Steam..."</strong></li>
+                                <li>Вставь ключ и следуй инструкциям</li>
+                                <li>Наслаждайся игрой! 🎮</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="final-message hidden" id="finalMessage">
+                    <h2>🎉 С Новым Годом, <span class="friend-name">[Имя Друга]</span>! 🎉</h2>
+                    <div class="message-content">
+                        <p>Я долго думал как презентовать подарок, который ты попросил у меня, твоего тайного санты.</p>
+                        <p>И эта идея мне показалась довольно креативной. Этот сайтик, который был собран на коленке при помощии ИИ, - обёртка твоего подарка!</p>
+                        <p>Данный арт твой! Забирай её скорее вместе с главным подарком и наслаждайся праздником!</p>
+                        <p class="personalized" id="personalMsg">
+                            <!-- Сюда вставится персонализированное сообщение на основе действий -->
+                        </p>
+                        <div class="achievements">
+                            <h3>🏆 Твои достижения:</h3>
+                            <ul id="achievementList">
+                                <!-- Список достижений появится здесь -->
+                            </ul>
+                        </div>
+                        <p class="signature">
+                            С наилучшими пожеланиями,<br>
+                            <span class="santa-sign">🎅 Твой Тайный Санта</span>
+                            <h2>А тепрерь отгадай, кто же твой тайный санта?!</h2>
+                        </p>
+                    </div>
+                </div>
+                <!-- Счетчик времени на сайте -->
+                <div class="time-counter">
+                    ⏰ Ты провёл здесь: <span id="timeSpent">0</span> секунд волшебства!
+                </div>
+            </section>
+
+        </div>
+        
+        <!-- Навигационные точки -->
+        <nav class="nav-dots">
+            <a href="#screen1" class="nav-dot active" data-screen="1"></a>
+            <a href="#screen2" class="nav-dot" data-screen="2"></a>
+            <a href="#screen3" class="nav-dot" data-screen="3"></a>
+            <a href="#screen4" class="nav-dot" data-screen="4"></a>
+            <a href="#screen5" class="nav-dot" data-screen="5"></a>
+        </nav>
+        
+        <!-- Кнопка быстрой прокрутки -->
+        <button class="btn-scroll-top" id="scrollTop">
+            ↑
+        </button>
+    </div>
+
+    <!-- Аудио элементы -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <audio id="soundClick">
+        <source src="click.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="soundSuccess">
+        <source src="success.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
