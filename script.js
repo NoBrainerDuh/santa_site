@@ -873,7 +873,7 @@ let isSpinning = false; // Добавь в начале файла (после s
             gifImg.style.animation = 'clickPulse 0.5s ease';
             
             // Уведомление
-            showNotification(`📥 GIF скачивается для ${CONFIG.friendName}!`);
+            showNotification(`📥 Скачивание запущено!`);
             
             // Можно добавить звук
             playSound('success');
