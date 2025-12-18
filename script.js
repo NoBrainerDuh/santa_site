@@ -875,9 +875,6 @@ let isSpinning = false; // Добавь в начале файла (после s
             // Уведомление
             showNotification(`Скачивание запущено!`);
             
-            // Можно добавить звук
-            playSound('success');
-            
             // Сбрасываем анимацию
             setTimeout(() => {
                 gifImg.style.animation = '';
