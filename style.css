@@ -271,7 +271,7 @@ body {
 }
 
 .letter h1 {
-    font-family: 'ChristmasFont', 'Comic Sans MS', cursive;
+    font-family: 'ChristmasFont', 'Comic Sans MS';
     font-size: 1.8rem;
     color: var(--color-primary);
     margin-bottom: 10px;
@@ -279,7 +279,7 @@ body {
 }
 
 .greeting {
-    font-family: 'HandwritingFont', 'Brush Script MT', cursive;
+    font-family: 'HandwritingFont', 'Comic Sans MS';
     font-size: 1.8rem;
     margin: 15px 0;
     color: var(--color-secondary);
@@ -404,7 +404,7 @@ body {
     font-size: 2rem;
     color: var(--color-primary);
     margin-bottom: 15px;
-    font-family: 'HandwritingFont', 'Brush Script MT', cursive;
+    font-family: 'HandwritingFont', 'Comic Sans MS';
 }
 
 .stats {
@@ -468,7 +468,7 @@ body {
 }
 
 .dialogue {
-    font-family: 'HandwritingFont', 'Brush Script MT', cursive;
+    font-family: 'HandwritingFont', 'Comic Sans MS';
     font-size: 1.5rem;
     color: var(--color-secondary);
     margin-top: 20px;
@@ -901,7 +901,7 @@ kbd {
 }
 
 .personalized {
-    font-family: 'HandwritingFont', 'Brush Script MT', cursive;
+    font-family: 'HandwritingFont', 'Comic Sans MS';
     font-size: 1.8rem;
     color: var(--color-secondary);
     margin: 30px 0;
@@ -948,7 +948,7 @@ kbd {
 }
 
 .santa-sign {
-    font-family: 'HandwritingFont', 'Brush Script MT', cursive;
+    font-family: 'HandwritingFont', 'Comic Sans MS';
     font-size: 2rem;
     color: var(--color-primary);
     display: block;
