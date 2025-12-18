@@ -798,7 +798,7 @@ let isSpinning = false; // Добавь в начале файла (после s
         // Обёртка для кликабельной гифки
         const gifLink = document.createElement('a');
         gifLink.href = CONFIG.giftGif;
-        gifLink.download = `новогодний_подарок_${CONFIG.friendName}.gif`;
+        gifLink.download = `новогодний_подарок_${CONFIG.friendName}.png`;
         gifLink.style.cssText = `
             display: block;
             width: 100%;
